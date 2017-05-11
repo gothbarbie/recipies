@@ -1,5 +1,3 @@
-// http://eslint.org/docs/user-guide/configuring
-
 module.exports = {
   root: true,
   parser: 'babel-eslint',
@@ -7,33 +5,24 @@ module.exports = {
     sourceType: 'module'
   },
   env: {
-    browser: true,
+    browser: true
   },
-  extends: 'airbnb-base',
   // required to lint *.vue files
-  plugins: [
-    'html'
-  ],
-  // check if imports actually resolve
-  'settings': {
-    'import/resolver': {
-      'webpack': {
-        'config': 'build/webpack.base.conf.js'
-      }
-    }
-  },
+  plugins: ['html'],
   // add your custom rules here
-  'rules': {
-    // don't require .vue extension when importing
-    'import/extensions': ['error', 'always', {
-      'js': 'never',
-      'vue': 'never'
-    }],
-    // allow optionalDependencies
-    'import/no-extraneous-dependencies': ['error', {
-      'optionalDependencies': ['test/unit/index.js']
-    }],
+  rules: {
+    'comma-dangle': [2, 'never'],
+    'comma-spacing': [2, { before: false, after: true }],
+    'key-spacing': 0,
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+    'keyword-spacing': [2, { after: true, before: true }],
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'no-unused-vars': 2,
+    'no-var': 2,
+    'object-curly-spacing': [2, 'always'],
+    'prefer-const': 2,
+    semi: [2, 'never'],
+    'space-before-blocks': 2,
+    'space-infix-ops': 2
   }
 }
