@@ -50,11 +50,9 @@ export default {
     }
   }
 }
-
 </script>
 
-<style scoped>
-
+<style lang="postcss" scoped>
 .navigation {
   margin: var(--spacing) 0;
   & ul {
@@ -64,5 +62,4 @@ export default {
   }
   height: 4em;
 }
-
 </style>

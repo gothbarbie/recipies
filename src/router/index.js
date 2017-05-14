@@ -7,7 +7,7 @@ import ViewRecipies from '@/views/ViewRecipies'
 
 Vue.use(Router)
 
-export default new Router({
+export const router = new Router({
   routes: [
     {
       path: '/',
@@ -28,6 +28,21 @@ export default new Router({
       path: '/view-recipies',
       name: 'ViewRecipies',
       component: ViewRecipies
+    },
+    { path: '*', redirect: '/' }
+  ],
+  mode: 'history',
+  scrollBehavior (to, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
     }
-  ]
+    if (to.hash) {
+      return { selector: to.hash }
+    }
+    return { x: 0, y: 0 }
+  }
+})
+
+router.beforeEach((to, from, next) => {
+  next()
 })

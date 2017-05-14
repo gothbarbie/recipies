@@ -46,7 +46,7 @@
 
       <h5>Ingredients</h5>
       <ul class="ingredients">
-        <li v-for="(ing, i) in ingredients">
+        <li v-for="(ing, i) in recipie.ingredients">
           {{ ing.name }} - {{ ing.amount }}{{ ing.measurement }}
           <r-button primary="true" @clicked="removeIngredient(i)">
             <icon type="minus"></icon>
@@ -54,6 +54,13 @@
         </li>
       </ul>
     </section>
+
+    <div class="align-right">
+      <r-button secondary="true" @clicked="saveRecipie">
+        Save
+        <icon type="plus"></icon>
+      </r-button>
+    </div>
 
   </section>
 </template>
@@ -65,22 +72,28 @@ import Icon from '@/components/Icon'
 import rTextarea from '@/components/TextArea'
 import rSelect from '@/components/Select'
 
+
+
 export default {
   name: 'AddRecipie',
   data () {
     return {
-      recipie: {
-        name: '',
-        description: ''
-      },
       ingredient: {
         name: '',
         amount: 0,
         measurement: 'g'
       },
-      ingredients: [],
       measurement: {},
       measurementsList: ['g', 'mg', 'hg', 'ml', 'tsk', 'msk']
+    }
+  },
+  computed: {
+    recipie () {
+      return {
+        name: '',
+        description: '',
+        ingredients: []
+      }
     }
   },
   components: {
@@ -107,7 +120,7 @@ export default {
       this.ingredient.measurement = value
     },
     addIngredient() {
-      this.ingredients.push({
+      this.recipie.ingredients.push({
         name: this.ingredient.name,
         amount: this.ingredient.amount,
         measurement: this.ingredient.measurement
@@ -116,7 +129,7 @@ export default {
       this.resetIngredient()
     },
     removeIngredient (i) {
-      this.ingredients.splice(i, 1)
+      this.recipie.ingredients.splice(i, 1)
     },
     resetIngredient () {
       this.ingredient = {
@@ -124,6 +137,10 @@ export default {
         amount: 0,
         measurement: 'g'
       }
+    },
+    saveRecipie () {
+      this.$store.state.recipies.push(this.recipie)
+      this.$router.push('/')
     }
   }
 } 
@@ -154,5 +171,9 @@ ul.ingredients {
 }
 .preview-item {
   line-height: 1.5em;
+}
+.align-right {
+  display: flex;
+  justify-content: flex-end;
 }
 </style>

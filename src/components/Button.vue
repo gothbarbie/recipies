@@ -75,13 +75,13 @@
 }
 
 .secondary {
-  background: linear-gradient(var(--color-white) 0%, var(--color-alabaster) 100%);
+  background: linear-gradient(var(--color-dodger-blue) 0%, var(--color-boston-blue) 100%);
   border-color: var(--color-alto) var(--color-alto) var(--color-silver);
-  color: var(--color-mine-shaft);
+  color: var(--color-concrete);
 
   &:hover,
   &:focus {
-    color: var(--color-boston-blue);
+    color: var(--color-white);
   }
 
   &:active {
