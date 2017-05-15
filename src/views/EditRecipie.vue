@@ -1,7 +1,7 @@
  <template>
   <section>
-    <h2>View Recipies</h2>
-    <router-view></router-view>
+    <h2>Edit Recipie</h2>
+    
   </section>
 </template>
 
@@ -17,8 +17,5 @@
 </script>
 
 <style scoped>
-ul.recipies {
-  list-style-type: square;
-  margin: var(--spacing);
-}
+
 </style>

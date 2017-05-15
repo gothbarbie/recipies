@@ -1,9 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/Home'
-import AddRecipie from '@/views/AddRecipie'
 import GenerateDinners from '@/views/GenerateDinners'
 import ViewRecipies from '@/views/ViewRecipies'
+import AddRecipie from '@/views/AddRecipie'
+import Recipies from '@/views/Recipies'
+import Recipie from '@/views/Recipie'
+import EditRecipie from '@/views/EditRecipie'
+
 
 Vue.use(Router)
 
@@ -27,7 +31,12 @@ export const router = new Router({
     {
       path: '/view-recipies',
       name: 'ViewRecipies',
-      component: ViewRecipies
+      component: ViewRecipies,
+      children: [
+        { path: '', component: Recipies },
+        { path: ':id', component: Recipie },
+        { path: ':id/edit', component: EditRecipie }
+      ]
     },
     { path: '*', redirect: '/' }
   ],
