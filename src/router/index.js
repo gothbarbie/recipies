@@ -30,7 +30,6 @@ export const router = new Router({
     },
     {
       path: '/view-recipies',
-      name: 'ViewRecipies',
       component: ViewRecipies,
       children: [
         { path: '', component: Recipies },

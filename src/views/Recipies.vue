@@ -1,19 +1,12 @@
  <template>
   <section>
-    <h3>All Recipies</h3>
-    <ul>
-      <router-link 
+    <ul class="recipies">
+      <router-link
+        v-for="(r, i) in recipies"
+        :key="i"
         tag="li"
-        to="/view-recipies/1"
-        style="cursor: pointer">Recipie 1</router-link>
-      <router-link 
-        tag="li"
-        to="/view-recipies/2"
-        style="cursor: pointer">Recipie 2</router-link>
-      <router-link 
-        tag="li"
-        to="/view-recipies/3"
-        style="cursor: pointer">Recipie 3</router-link>
+        :to="'/view-recipies/' + i"
+        style="cursor: pointer">{{ r.name }}</router-link>
     </ul>
   </section>
 </template>
@@ -23,17 +16,17 @@
   export default {
     data () {
       return {
-        
-      }
-    },
-    computed: {
-      recipies () {
-        this.$store.state.recipies
+        recipies: this.$store.state.recipies
       }
     }
   }
 </script>
 
 <style scoped>
-
+  .recipies {
+    margin: 0 1em;
+    & li {
+      margin: 1em 0;
+    }
+  }
 </style>

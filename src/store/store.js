@@ -7,17 +7,20 @@ export const store = new Vuex.Store({
   state: {
     recipies: [
       {
-        name: 'Frysta kanelbullar',
-        description: 'Köp bullar. Placera bullar i micron. Micra lagom länge på lagom värme. Servera på fat.',
+        id: '0',
+        name: 'Semlor',
+        description: 'Köp semla. Plocka ur förpackningen. Servera på fat.',
         ingredients: [
           {
-            name: 'Påse frysta kanelbullar',
-            amount: 10,
+            name: 'Semla',
+            amount: 1,
             measurement: 'hg'
           }
-        ]
+        ],
+        rating: 4
       },
       {
+        id: '1',
         name: 'Frysta kanelbullar',
         description: 'Köp bullar. Placera bullar i micron. Micra lagom länge på lagom värme. Servera på fat.',
         ingredients: [
@@ -26,29 +29,34 @@ export const store = new Vuex.Store({
             amount: 10,
             measurement: 'hg'
           }
-        ]
+        ],
+        rating: 3
       },
       {
-        name: 'Frysta kanelbullar',
-        description: 'Köp bullar. Placera bullar i micron. Micra lagom länge på lagom värme. Servera på fat.',
+        id: '2',
+        name: 'Te',
+        description: 'Värm vatten i en kopp i micron. Placera tepåse i koppen.',
         ingredients: [
           {
-            name: 'Påse frysta kanelbullar',
-            amount: 10,
-            measurement: 'hg'
+            name: 'Tepåse',
+            amount: 5,
+            measurement: 'g'
           }
-        ]
+        ],
+        rating: 2
       },
       {
-        name: 'Frysta kanelbullar',
-        description: 'Köp bullar. Placera bullar i micron. Micra lagom länge på lagom värme. Servera på fat.',
+        id: '3',
+        name: 'Vatten',
+        description: 'Placera glas under kranen. Fyll med vatten.',
         ingredients: [
           {
-            name: 'Påse frysta kanelbullar',
-            amount: 10,
-            measurement: 'hg'
+            name: 'Vatten',
+            amount: 100,
+            measurement: 'ml'
           }
-        ]
+        ],
+        rating: 1
       }
     ]
   },

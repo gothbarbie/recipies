@@ -1,10 +1,9 @@
  <template>
   <section>
-    <h3>Recipie</h3>
+    <h3>{{ recipies[$route.params.id].name }}</h3>
 
     <div class="preview-name-description">
-      <div class="preview-item">Name: {{ recipies[$route.params.id].name }}</div>
-      <div class="preview-item" style="white-space: pre">Description: 
+      <div class="preview-item" style="white-space: pre">
         <div>{{ recipies[$route.params.id].description }}</div>
       </div>
     </div>

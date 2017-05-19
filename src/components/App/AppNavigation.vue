@@ -40,13 +40,13 @@ export default {
   },
   methods: {
     goToGenerateDinners () {
-      this.$router.push('generate-dinners')
+      this.$router.push('/generate-dinners')
     },
     goToViewRecipies () {
-      this.$router.push('view-recipies')
+      this.$router.push('/view-recipies')
     },
     goToAddRecipie () {
-      this.$router.push('add-recipie')
+      this.$router.push('/add-recipie')
     }
   }
 }
