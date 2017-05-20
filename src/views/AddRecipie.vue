@@ -104,6 +104,7 @@ export default {
     rSelect
   },
   methods: {
+    ...mapActions(['addRecipie']),
     changedName(value) {
       this.recipie.name = value
     },
@@ -139,7 +140,7 @@ export default {
       }
     },
     saveRecipie () {
-      this.$store.state.recipies.push(this.recipie)
+      this.addRecipie(this.recipie)
       this.$router.push('/')
     }
   }

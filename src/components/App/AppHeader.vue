@@ -4,7 +4,7 @@
   </header>
 </template>
 
-<style scoped>
+<style lang="postcss" scoped>
   .wrapper {
     max-width: 900px;
     text-align: left;

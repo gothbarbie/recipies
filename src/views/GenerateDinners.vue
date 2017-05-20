@@ -6,7 +6,7 @@
         @clicked="generate"
         primary="true">
         Generate
-        <Icon type="plus"></Icon>
+        <Icon type="refresh"></Icon>
       </r-button>
     </div>
     <ul class="weekdays">
@@ -15,10 +15,18 @@
         <template v-if="results.length > 0">
           <div class="recipie">{{ results[0].name }}</div>
           <r-button
-            @clicked="save(0)"
+            v-if="!isSaved(results[0].id)"
+            @clicked="save(results[0].id)"
             primary="true">
-            Save
-            <Icon type="plus"></Icon>
+            Keep
+            <Icon type="thumb-tack"></Icon>
+          </r-button>
+          <r-button
+            v-else
+            @clicked="unSave(results[0].id)"
+            primary="true">
+            Delete
+            <Icon type="times-circle"></Icon>
           </r-button>
         </template>
       </li>
@@ -27,10 +35,18 @@
         <template v-if="results.length > 0">
           <div class="recipie">{{ results[1].name }}</div>
           <r-button
-            @clicked="save(1)"
+            v-if="!isSaved(results[1].id)"
+            @clicked="save(results[1].id)"
             primary="true">
-            Save
-            <Icon type="plus"></Icon>
+            Keep
+            <Icon type="thumb-tack"></Icon>
+          </r-button>
+          <r-button
+            v-else
+            @clicked="unSave(results[1].id)"
+            primary="true">
+            Delete
+            <Icon type="times-circle"></Icon>
           </r-button>
         </template>
       </li>
@@ -39,10 +55,18 @@
         <template v-if="results.length > 0">
           <div class="recipie">{{ results[2].name }}</div>
           <r-button
-            @clicked="save(2)"
+            v-if="!isSaved(results[2].id)"
+            @clicked="save(results[2].id)"
             primary="true">
-            Save
-            <Icon type="plus"></Icon>
+            Keep
+            <Icon type="thumb-tack"></Icon>
+          </r-button>
+          <r-button
+            v-else
+            @clicked="unSave(results[2].id)"
+            primary="true">
+            Delete
+            <Icon type="times-circle"></Icon>
           </r-button>
         </template>
       </li>
@@ -51,10 +75,18 @@
         <template v-if="results.length > 0">
           <div class="recipie">{{ results[3].name }}</div>
           <r-button
-            @clicked="save(3)"
+            v-if="!isSaved(results[3].id)"
+            @clicked="save(results[3].id)"
             primary="true">
-            Save
-            <Icon type="plus"></Icon>
+            Keep
+            <Icon type="thumb-tack"></Icon>
+          </r-button>
+          <r-button
+            v-else
+            @clicked="unSave(results[3].id)"
+            primary="true">
+            Delete
+            <Icon type="times-circle"></Icon>
           </r-button>
         </template>
       </li>
@@ -63,10 +95,18 @@
         <template v-if="results.length > 0">
           <div class="recipie">{{ results[4].name }}</div>
           <r-button
-            @clicked="save(4)"
+            v-if="!isSaved(results[4].id)"
+            @clicked="save(results[4].id)"
             primary="true">
-            Save
-            <Icon type="plus"></Icon>
+            Keep
+            <Icon type="thumb-tack"></Icon>
+          </r-button>
+          <r-button
+            v-else
+            @clicked="unSave(results[4].id)"
+            primary="true">
+            Delete
+            <Icon type="times-circle"></Icon>
           </r-button>
         </template>
       </li>
@@ -84,42 +124,66 @@
   import Icon from '@/components/Icon'
 
   export default {
-    data () {
-      return {
-        recipies: this.$store.state.recipies,
-        results: [],
-        saved: []
+    name: 'GenerateDinners',
+    computed: {
+      recipies () {
+        return this.$store.state.recipies 
+      },
+      saved () {
+        return this.$store.state.saved
       }
     },
     components: {
       rButton,
       Icon
     },
+    data () {
+      return {
+        results: []
+      }
+    },
     methods: {
+      ...mapActions(['addSaved']),
       generate() {
         const totalNumberOfRecipies = this.recipies.length
-        
-        for (let i = 0; i < 5; i++) {
+        const max = 5 - this.results.length 
+
+        for (let i = 0; i < max; i++) {
           this.results.push(this.recipies[this.random(totalNumberOfRecipies)])
         }
       },
       random(max) {
         return Math.floor(Math.random() * (max - 0))
       },
-      save(id) {
-        // if it isnt already saved
-        let exist = ''
-        
+      isSaved (id) {
+        const found = _.find(this.saved, function(o) {
+          return o.id === id
+        })
+        return typeof found !== 'undefined'
+      },
+      getRecipie (id) {
+        return _.find(this.recipies, function(o) {
+          return o.id === id
+        })
+      },
+      save (id) {
+        let found
+          
         if (this.saved.length > 0) {
-          exist = _.find(this.saved, function(o) { return o.id === id.toString() })
+          found = _.find(this.saved.saved, { 'id': id })
         }
-        
-        console.log(exist)
-
-        if (exist !== '') {
-          this.saved.push(this.results[id])
+        // if it isnt already saved
+        if (typeof found == 'undefined') {
+          this.addSaved(this.getRecipie(id))
         }
+      },
+      unSave (id) {
+        const index = this.recipies.indexOf(o => {
+          return o.id === id
+        })
+        return index
       } 
+      
       // get length of total number of recipies
       // pick five random numbers
       // fetch recipies with indexes from these five numbers

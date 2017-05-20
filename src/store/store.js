@@ -7,7 +7,7 @@ export const store = new Vuex.Store({
   state: {
     recipies: [
       {
-        id: '0',
+        id: 'et44rt',
         name: 'Semlor',
         description: 'Köp semla. Plocka ur förpackningen. Servera på fat.',
         ingredients: [
@@ -20,7 +20,7 @@ export const store = new Vuex.Store({
         rating: 4
       },
       {
-        id: '1',
+        id: '4t4t',
         name: 'Frysta kanelbullar',
         description: 'Köp bullar. Placera bullar i micron. Micra lagom länge på lagom värme. Servera på fat.',
         ingredients: [
@@ -33,7 +33,7 @@ export const store = new Vuex.Store({
         rating: 3
       },
       {
-        id: '2',
+        id: 'jytje',
         name: 'Te',
         description: 'Värm vatten i en kopp i micron. Placera tepåse i koppen.',
         ingredients: [
@@ -46,7 +46,7 @@ export const store = new Vuex.Store({
         rating: 2
       },
       {
-        id: '3',
+        id: 'uke5',
         name: 'Vatten',
         description: 'Placera glas under kranen. Fyll med vatten.',
         ingredients: [
@@ -58,11 +58,31 @@ export const store = new Vuex.Store({
         ],
         rating: 1
       }
-    ]
+    ],
+    saved: []
+  },
+  getters: {
+    recipies: state => {
+      return state.recipies
+    },
+    saved: state => {
+      return state.saved
+    }
+  },
+  mutations: {
+    addRecipie: (state, payload) => {
+      state.recipies.push(payload)
+    },
+    addSaved: (state, payload) => {
+      state.saved.push(payload)
+    }
   },
   actions: {
-    addRecipie: context => {
-      context.commit('addRecipie')
+    addRecipie: ({ commit }, payload) => {
+      commit('addRecipie', payload)
+    },
+    addSaved: ({ commit }, payload) => {
+      commit('addSaved', payload)
     }
   }
 })

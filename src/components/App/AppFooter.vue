@@ -4,7 +4,7 @@
   </footer>
 </template>
 
-<style scoped>
+<style lang="postcss" scoped>
   .footer {
     margin: 3em 0;
     text-align: center;
