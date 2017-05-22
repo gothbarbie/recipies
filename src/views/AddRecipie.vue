@@ -66,12 +66,13 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 import rButton from '@/components/Button'
 import rInput from '@/components/Input'
 import Icon from '@/components/Icon'
 import rTextarea from '@/components/TextArea'
 import rSelect from '@/components/Select'
-
 
 
 export default {
@@ -140,7 +141,7 @@ export default {
       }
     },
     saveRecipie () {
-      this.addRecipie(this.recipie)
+      this.$http.post('recipies.json', this.recipie)
       this.$router.push('/')
     }
   }

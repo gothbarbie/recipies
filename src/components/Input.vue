@@ -27,6 +27,10 @@
 </script>
 
 <style lang="postcss" scoped>
+div {
+  display: flex;
+  flex-direction: column;
+}
 .input {
   background-color: var(--color-white);
   border: 1px solid var(--color-alto);

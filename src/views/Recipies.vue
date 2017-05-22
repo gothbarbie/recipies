@@ -1,32 +1,22 @@
  <template>
   <section>
-    <ul class="recipies">
-      <router-link
-        v-for="(r, i) in recipies"
-        :key="i"
-        tag="li"
-        :to="'/view-recipies/' + i"
-        style="cursor: pointer">{{ r.name }}</router-link>
-    </ul>
+    <h2>Recepies</h2>
+    <app-recipie v-for="(recipie, i) in recipies" :recipie="recipie" :key="i"></app-recipie>
   </section>
 </template>
 
 
 <script>
+  import Recipie from './Recipie.vue'
+
   export default {
-    data () {
-      return {
-        recipies: this.$store.state.recipies
+    components: {
+      appRecipie: Recipie
+    },
+    computed: {
+      recipies () {
+        return this.$store.getters.recipies
       }
     }
   }
 </script>
-
-<style scoped>
-  .recipies {
-    margin: 0 1em;
-    & li {
-      margin: 1em 0;
-    }
-  }
-</style>

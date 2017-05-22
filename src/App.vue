@@ -10,16 +10,27 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 import AppHeader from '@/components/App/AppHeader'
 import AppNavigation from '@/components/App/AppNavigation'
 import AppFooter from '@/components/App/AppFooter'
 
 export default {
-  name: 'app',
   components: {
     AppHeader,
     AppNavigation,
     AppFooter 
+  },
+  created () {
+    this.fetchRecipies()
+    this.fetchSaved()
+  },
+  methods: {
+    ...mapActions({
+      fetchRecipies: 'loadRecipies',
+      fetchSaved: 'loadSaved'
+    })
   }
 }
 </script>

@@ -9,6 +9,7 @@
         <Icon type="refresh"></Icon>
       </r-button>
     </div>
+
     <ul class="weekdays">
       <li>
         <div class="day">Måndag</div>
@@ -119,6 +120,7 @@
 
 <script>
   import _ from 'lodash'
+  import { mapActions } from 'vuex'
 
   import rButton from '@/components/Button'
   import Icon from '@/components/Icon'
